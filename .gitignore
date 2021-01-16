@@ -1,5 +1,1 @@
-node_modules/
-db/
-bundle/
-bundle.zip
-.env
+/node_modules
