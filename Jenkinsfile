@@ -21,4 +21,8 @@ node {
         docker.image('node_docker_demo').push()
         }
     }
+
+    stage('Clean images'){
+        ssh('docker system prune -a')
+    }
     }
