@@ -11,9 +11,14 @@ node {
             sh 'echo "Test passed"'
         }
     }
-    stage('Push image'){
-        docker.withRegitry('https://458710968389.dkr.ecr.ap-south-1.amazonaws.com/node_docker_demo', 'ecr:ap-south-1:node_ecr_credentials'){
-        docker.image('node_docker_demo').push('latest')      
-              }    
+
+        stage('Push image') {
+        /* Finally, we'll push the image with two tags:
+         * First, the incremental build number from Jenkins
+         * Second, the 'latest' tag.
+         * Pushing multiple tags is cheap, as all the layers are reused. */
+        docker.withRegistry('https://458710968389.dkr.ecr.ap-south-1.amazonaws.com', 'ecr:ap-south-1:node_ecr_credentials') {
+            eicapi.push()
         }
+    }
     }
