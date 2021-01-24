@@ -17,7 +17,7 @@ io.on('connection', (client)=> {
  console.log('device connected');
 })
 app.get('/', (req, res)=> {
-    res.send('ok from new');
+    res.send('ok from new 1');
 })
 app.post('/location', (req, res)=> {
     console.log('req.body', req.body);
