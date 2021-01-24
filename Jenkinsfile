@@ -18,8 +18,7 @@ node {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
         docker.withRegistry('https://458710968389.dkr.ecr.ap-south-1.amazonaws.com', 'ecr:ap-south-1:node_ecr_credentials') {
-        docker.image('node_docker_demo').
-        eicapi.push()
+         docker.image('node_docker_demo').push('latest')
         }
     }
     }
