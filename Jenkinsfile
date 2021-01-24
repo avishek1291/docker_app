@@ -12,22 +12,14 @@ node {
         }
     }
 
-    stage('Push image') {
+        stage('Push image') {
         /* Finally, we'll push the image with two tags:
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
-        docker.withRegistry('https://458710968389.dkr.ecr.ap-south-1.amazonaws.com', 'ecr:ap-south-1:node_ecr_credentials') {
-        docker.push("$BUILD_NUMBER")
-        docker.push('latest')
+        docker.withRegistry('https://458710968389.dkr.ecr.ap-south-1.amazonaws.com/node_docker_demo', 'ecr:ap-south-1:node_ecr_credentials') {
+        docker.push("${env.BUILD_NUMBER}")
+        docker.push("latest")
         }
     }
-    stage('Remove Unused docker image') {
-        sh "docker rmi $imagename:$BUILD_NUMBER"
-         sh "docker rmi $imagename:latest"
-
-      }
-    
-    
-
     }
