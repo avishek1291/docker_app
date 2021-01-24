@@ -13,9 +13,8 @@ node {
     }
     stage('Push image'){
         docker.withRegitry('https://458710968389.dkr.ecr.ap-south-1.amazonaws.com/node_docker_demo', 'ecr:ap-south-1:node_ecr_credentials'){
-        docker.image('node_docker_demo').
-        push("${env.BUILD_NUMBER}").           
-        push("latest")        
+        app.push("${env.BUILD_NUMBER}")            
+        app.push("node_docker_demo")        
               }    
         }
     }
