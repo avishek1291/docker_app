@@ -18,11 +18,16 @@ node {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
         docker.withRegistry('https://458710968389.dkr.ecr.ap-south-1.amazonaws.com', 'ecr:ap-south-1:node_ecr_credentials') {
-        docker.image('node_docker_demo').push()
+        docker.push("$BUILD_NUMBER")
+        docker.push('latest')
         }
     }
+    stage('Remove Unused docker image') {
+        sh "docker rmi $imagename:$BUILD_NUMBER"
+         sh "docker rmi $imagename:latest"
 
-    stage('Clean images'){
-        ssh('docker system prune -a')
+      }
+    
     }
+
     }
