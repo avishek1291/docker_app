@@ -19,7 +19,7 @@ node {
          * Pushing multiple tags is cheap, as all the layers are reused. */
         docker.withRegistry('https://458710968389.dkr.ecr.ap-south-1.amazonaws.com/node_docker_demo', 'ecr:ap-south-1:node_ecr_credentials') {
         docker.push("${env.BUILD_NUMBER}")
-        docker.push("latest")
+        docker.push()
         }
     }
     }
