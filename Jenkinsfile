@@ -26,6 +26,9 @@ node {
     }
 
     stage('deploy latest image to ecs'){
-        sh "aws ecs update-service --cluster Nodedocker --service dockerdeploy --force-new-deployment"
+        withAWS(credentials: 'node_ecr_credentials', region: 'ap-south-1') {
+        sh ''' 
+           aws ecs update-service --cluster Nodedocker --service dockerdeploy --force-new-deployment
+        '''
     }
     }
