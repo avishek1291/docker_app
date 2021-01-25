@@ -24,4 +24,8 @@ node {
     stage('Remove Unused docker image') {
     sh "docker system prune -a -f"
     }
+
+    stage('deploy latest image to ecs'){
+        sh "aws ecs update-service --cluster Nodedocker --service dockerdeploy --force-new-deployment"
+    }
     }
