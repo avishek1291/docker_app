@@ -30,3 +30,5 @@ node {
         sh"aws ecs update-service --cluster Nodedocker --service dockerdeploy --force-new-deployment"
     }
     }
+
+}
